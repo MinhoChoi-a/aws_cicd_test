@@ -1,7 +1,7 @@
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 curl -sSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo add-apt-repository "deb [arch="$(dpkg --print-architecture)"] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
@@ -11,7 +11,7 @@ sudo systemctl enable docker
 sudo usermod -a -G docker ubuntu
 sudo mkdir -p /etc/ecs
 sudo touch /etc/ecs/ecs.config
-echo "ECS_CLUSTER=<your_cluster_name>" | sudo tee /etc/ecs/ecs.config
+echo "ECS_CLUSTER=cicd-test-cluster" | sudo tee /etc/ecs/ecs.config
 curl -o /tmp/ecs-agent.tar https://amazon-ecs-agent.s3.amazonaws.com/ecs-agent-latest.tar.gz
 sudo tar xzf /tmp/ecs-agent.tar -C /opt
 sudo mkdir -p /var/log/ecs /var/lib/ecs/data /var/lib/ecs/scratch
