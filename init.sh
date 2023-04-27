@@ -39,3 +39,4 @@
 #echo "ECS_CLUSTER=cicd-test-cluster" | sudo tee /etc/ecs/ecs.config
 sudo curl -O https://s3.us-west-2.amazonaws.com/amazon-ecs-agent-us-west-2/amazon-ecs-init-latest.amd64.deb
 sudo dpkg -i amazon-ecs-init-latest.amd64.deb
+sudo systemctl start ecs
