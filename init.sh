@@ -4,9 +4,9 @@
 
 # git clone to get code
 
-sudo systemctl stop apache2
+sudo systemctl stop httpd
 sudo wget http://nginx.org/keys/nginx_signing.key
-sudo apt-key add nginx_signing.key
+sudo -key add nginx_signing.key
 
 cd /etc/apt
 sudo echo "deb http://nginx.org/packages/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" nginx" >> ./sources.list
@@ -19,7 +19,7 @@ sudo systemctl start nginx.service
 cd /etc/nginx/conf.d
 sudo mv ./default.conf ./default.conf.bak
 sudo touch ./server1.conf
-sudo echo "server { root /home/ubuntu/public_html; location /osrm/route/default { proxy_pass http://localhost:5000/route/v1/driving; } location /osrm/route/avoidtoll { proxy_pass http://localhost:5001/route/v1/driving; } }" > ./server1.conf
+sudo echo "server { root /home/ubuntu/public_html; location / { proxy_pass http://localhost:5000/route/v1/driving; } location /osrm/route/avoidtoll { proxy_pass http://localhost:5001/route/v1/driving; } }" > ./server1.conf
 sudo nginx -s reload
 
 sudo apt-get update
