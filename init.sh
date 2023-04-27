@@ -2,6 +2,9 @@
 # create ec2 instance follwing the requirements what we set on ecs cluster
 # ec2 should have role("containerService...") to serve ecs
 
+# git clone to get code
+
+sudo systemctl stop apache2
 sudo wget http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
 
